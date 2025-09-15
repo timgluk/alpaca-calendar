@@ -1,0 +1,26 @@
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  background-color: var(--body-bg-color);
+  transition: background-color 0.2s;
+
+  --light: #f9f9f9;
+  --dark: #151515;
+  --body-bg-color: #fff;
+  --hover-text-color: #000;
+  --bg-day-color: #fff;
+
+  &.dark {
+    --body-bg-color: #c4c4c4;
+    --hover-text-color: #fff;
+    --bg-day-color: #2D9CDB;
+  }
+}

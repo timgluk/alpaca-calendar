@@ -1,0 +1,172 @@
+.calendar {
+  width: clamp(240px, 100%, 560px);
+  min-width: 240px;
+  border-radius: 6px;
+  border: 1px solid rgba(19, 20, 23, 0.1);
+  background: linear-gradient(rgba(19, 20, 23, 0.9), rgba(19, 20, 23, 0.9)),
+    url("@assets/alpaca.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  margin-inline: 10px;
+
+  &__months {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px 8px;
+  }
+
+  &__current-month {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__prew-month,
+  &__next-month {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    // background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: rgba(217, 217, 217, 1);
+      }
+    }
+  }
+
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(7, calc(100% / 7));
+    /* без gap — так «пилюля» будет непрерывной */
+  }
+
+  &__day {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      background-color: var(--bg-day-color);
+      opacity: 0;
+      visibility: hidden;
+      z-index: -1;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+      border: 1px solid rgba(19, 20, 23, 0.1);
+      background-color: rgba(19, 20, 23, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      z-index: -1;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--hover-text-color);
+      }
+      &:hover::before,
+      &:hover::after {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    &--noactive {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &--active {
+      color: var(--hover-text-color);
+      &::before,
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &--inrange::before {
+      width: 100%;
+      height: 80%;
+      border-radius: 0;
+      opacity: 1;
+      visibility: visible;
+      background-color: var(--bg-day-color);
+    }
+
+    &--start {
+      color: var(--hover-text-color);
+      &::before {
+        width: 90%;
+        height: 80%;
+        margin-left: 10%;
+        border-radius: 999px 0 0 999px;
+        opacity: 1;
+        visibility: visible;
+        background-color: var(--bg-day-color);
+      }
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      } /* серый кружок */
+    }
+
+    &--between {
+      color: var(--hover-text-color);
+      &::before {
+        width: 100%;
+        height: 80%;
+        border-radius: 0;
+        opacity: 1;
+        visibility: visible;
+        background-color: var(--bg-day-color);
+      }
+      &::after {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &--end {
+      color: var(--hover-text-color);
+      &::before {
+        width: 90%;
+        height: 80%;
+        margin-right: 10%;
+        border-radius: 0 999px 999px 0;
+        opacity: 1;
+        visibility: visible;
+        background-color: var(--bg-day-color);
+      }
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}

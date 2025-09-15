@@ -1,0 +1,85 @@
+.switcher {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  // Use this transform for custom sized toggle
+  transform: scale(1.1);
+
+  display: flex;
+  align-items: center;
+  input {
+    display: none;
+  }
+  label {
+    display: block;
+    height: 36px;
+    width: 62px;
+    border-radius: 50px;
+    background: var(--dark);
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      height: 28px;
+      width: 28px;
+      background: var(--light);
+      border-radius: 50%;
+      border-radius: 16px;
+      z-index: 1;
+      animation: off 0.5s ease-out;
+      transform-origin: 0 0;
+    }
+  }
+
+  input:checked + label {
+    background: var(--light);
+
+    &:before {
+      transform: translateX(26px);
+      animation: on 0.5s ease-out;
+      transform-origin: 100% 0;
+      background: var(--dark);
+    }
+  }
+}
+
+@keyframes off {
+  0% {
+    transform: translateX(24px);
+  }
+  20% {
+    transform: translateX(13px) scaleX(1.1);
+  }
+  40% {
+    transform: translateX(2px) scaleX(0.9);
+  }
+  70% {
+    transform: translateX(6px) scaleX(1);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes on {
+  0% {
+    -webkit-transform: translateX(2px);
+  }
+  20% {
+    -webkit-transform: translateX(13px) scaleX(1.1);
+  }
+  40% {
+    -webkit-transform: translateX(26px) scaleX(0.9);
+  }
+  70% {
+    -webkit-transform: translateX(20px) scaleX(1);
+  }
+  100% {
+    -webkit-transform: translateX(24px);
+  }
+}

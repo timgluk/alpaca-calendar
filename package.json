@@ -1,0 +1,21 @@
+{
+  "name": "alpaca-calendar",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --open"
+  },
+  "keywords": [],
+  "author": "Timi",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "sass": "^1.92.1",
+    "vite": "^7.1.5"
+  },
+  "dependencies": {
+    "modern-normalize": "^3.0.1"
+  }
+}
